@@ -140,22 +140,17 @@ local function toggleGuiVisibility()
         Enum.EasingDirection.Out
     )
     
-    local tween = TweenService:Create(MainFrame, tweenInfo, {
-        BackgroundTransparency = targetTransparency
-    })
-    tween:Play()
+    MainFrame.BackgroundTransparency = targetTransparency
     
     for _, element in pairs(MainFrame:GetDescendants()) do
         if element:IsA("GuiObject") then
-            local properties = {
-                BackgroundTransparency = targetTransparency
-            }
-            
             if element:IsA("TextLabel") or element:IsA("TextButton") or element:IsA("TextBox") then
-                properties.TextTransparency = targetTransparency
+                element.TextTransparency = targetTransparency
             end
             
-            TweenService:Create(element, tweenInfo, properties):Play()
+            if not element:IsA("UICorner") then
+                element.BackgroundTransparency = element.BackgroundTransparency == 1 and 1 or targetTransparency
+            end
         end
     end
     
@@ -173,15 +168,19 @@ local function toggleGuiVisibility()
         indicator.TextTransparency = 0
         indicator.Parent = ScreenGui
         
-        local corner = indicator:FindFirstChild("UICorner") or Instance.new("UICorner")
-        corner.CornerRadius = UDim.new(0, 6)
-        corner.Parent = indicator
+        if not indicator:FindFirstChild("UICorner") then
+            local corner = Instance.new("UICorner")
+            corner.CornerRadius = UDim.new(0, 6)
+            corner.Parent = indicator
+        end
     else
         local indicator = ScreenGui:FindFirstChild("TeleportIndicator")
         if indicator then
             indicator:Destroy()
         end
     end
+    
+    MainFrame.Visible = isGuiVisible
 end
 
 local teleportConnection = nil
