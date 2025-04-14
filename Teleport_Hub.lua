@@ -111,7 +111,7 @@ local function TeleportToPlayer(targetUsername)
                     local myHumanoidRootPart = character:FindFirstChild("HumanoidRootPart")
                     if myHumanoidRootPart then
                         local tweenInfo = TweenInfo.new(
-                            0.5,
+                            0.2,
                             Enum.EasingStyle.Quad,
                             Enum.EasingDirection.Out
                         )
