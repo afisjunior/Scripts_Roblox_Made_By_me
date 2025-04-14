@@ -2,14 +2,14 @@
 local Players = game:GetService("Players")
 local TweenService = game:GetService("TweenService")
 local RunService = game:GetService("RunService")
-local UserInputService = game:GetService("UserInputService") -- Para detectar a tecla K
+local UserInputService = game:GetService("UserInputService") -- To detect K key
 
 -- Variables
 local LocalPlayer = Players.LocalPlayer
 local PlayerGui = LocalPlayer:WaitForChild("PlayerGui")
 local isTeleporting = false
 local targetUsername = ""
-local isGuiVisible = true -- Controle de visibilidade
+local isGuiVisible = true -- Visibility Control
 
 -- Create ScreenGui
 local ScreenGui = Instance.new("ScreenGui")
@@ -19,7 +19,7 @@ ScreenGui.Parent = PlayerGui
 -- Create Main Frame
 local MainFrame = Instance.new("Frame")
 MainFrame.Name = "MainFrame"
-MainFrame.Size = UDim2.new(0, 300, 0, 250) -- Altura aumentada para o novo botão
+MainFrame.Size = UDim2.new(0, 300, 0, 250) 
 MainFrame.Position = UDim2.new(0.5, -150, 0.5, -125)
 MainFrame.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
 MainFrame.BorderSizePixel = 0
