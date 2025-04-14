@@ -134,11 +134,6 @@ local function toggleGuiVisibility()
     isGuiVisible = not isGuiVisible
     
     local targetTransparency = isGuiVisible and 0 or 1
-    local tweenInfo = TweenInfo.new(
-        0.3,
-        Enum.EasingStyle.Quad,
-        Enum.EasingDirection.Out
-    )
     
     MainFrame.BackgroundTransparency = targetTransparency
     
@@ -146,6 +141,14 @@ local function toggleGuiVisibility()
         if element:IsA("GuiObject") then
             if element:IsA("TextLabel") or element:IsA("TextButton") or element:IsA("TextBox") then
                 element.TextTransparency = targetTransparency
+                
+                if element.Name == "TeleportButton" then
+                    if isTeleporting then
+                        element.BackgroundColor3 = Color3.fromRGB(0, 180, 0)
+                    else
+                        element.BackgroundColor3 = Color3.fromRGB(0, 120, 215)
+                    end
+                end
             end
             
             if not element:IsA("UICorner") then
